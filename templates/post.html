@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    {{ exact_post.header }}
+{% endblock title %}
+{% block content %}
+    <div style="width: 60vw; margin-left: 25vw; border: 1px solid grey; height: max-content">
+<img src="{% if exact_post.image %}{{ exact_post.image.url }}{% endif %}" style="margin-left: 22vw;width: 300px; height: 300px">
+<h1 style="text-align: center">{{ exact_post.header }}</h1>
+    <p>{{ exact_post.body }}</p>
+    <span>Теги:</span>
+{% for tags in exact_post.tags.all %}
+    <a href="{{ tags.get_absolute_url }}">{{ tags }}</a>
+    {% endfor%}
+   <p> Просмотров :  {{ exact_post.total_views }}</p>
+</div>
+{% endblock content %}

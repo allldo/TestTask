@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+{{ curr_tag }}
+{% endblock title %}
+{% block content %}
+    <h1>Новостные посты по тегу {{ curr_tag }} </h1>
+    {% for post in news_obj %}
+    <div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{% if post.image %}{{ post.image.url }}{% endif %}" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><a href="{{ post.get_absolute_url }}">{{ post.header }}</a></h5>
+        <p class="card-text">{{ post.body|truncatechars:75}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+    {% endfor %}
+{% endblock content %}

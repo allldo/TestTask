@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Статистка просмотров
+{% endblock title %}
+{% block content %}
+
+{% for post in news %}
+
+    <div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><a href="{{ post.get_absolute_url }}">{{ post.header }}</a> Просмотрело: {{ post.total_views }}</h5>
+        <p class="card-text">{{ post.body|truncatechars:75}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+{%endfor %}
+{% endblock content %}
